@@ -37,7 +37,7 @@ sudo ./config_monitor.sh
 ```
 inotifywait (detect event file)
     ↓
-Filter ekstensi + blacklist path
+Filter ekstention + blacklist path
     ↓
 get_modifier_user (Detect who edit files)
     ↓
