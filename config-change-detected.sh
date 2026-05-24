@@ -21,10 +21,10 @@ AUDIT_RULE_INSTALLED=false
 
 ALLOWED_EXT=("conf" "cfg" "ini" "env")
 
-# Blacklist user sistem 
+ 
 SKIP_USERS=("root" "systemd" "daemon" "nobody" "www-data" "syslog" "_apt" "systemd-resolve" "systemd-timesync")
 
-# Blacklist path pattern (substring match)
+
 SKIP_PATHS=(
     "/etc/mtab"
     "/etc/resolv.conf"
@@ -36,7 +36,7 @@ SKIP_PATHS=(
     "/opt/microsoft"
 )
 
-# Colours
+
 RED='\033[0;31m'; YLW='\033[1;33m'; GRN='\033[0;32m'
 CYN='\033[0;36m'; BLD='\033[1m'; RST='\033[0m'
 
@@ -68,7 +68,7 @@ is_skipped_path() {
 # ──────────────────────────────────────────────────────────────
 is_skipped_user() {
     local user="$1"
-    # Bersihkan suffix seperti "(lsof)" atau "(who)"
+    
     local clean_user="${user%% *}"
     for skip in "${SKIP_USERS[@]}"; do
         [[ "$clean_user" == "$skip" ]] && return 0
@@ -275,7 +275,7 @@ build_telegram_message() {
     local checksum="$6"
     local timestamp="$7"
 
-    # Emoji per event type
+    
     local emoji="🔔"
     case "$event" in
         MODIFY)    emoji="✏️"  ;;
@@ -297,12 +297,12 @@ build_telegram_message() {
         if [[ -n "$raw_diff" ]]; then
             diff_text="
 
-📝 <b>Perubahan:</b>
+📝 <b>Modify:</b>
 <pre>${raw_diff}</pre>"
         fi
     fi
 
-    printf '%s <b>CONFIG CHANGE DETECTED</b>\n\n🕐 <b>Waktu  :</b> %s\n📋 <b>Event  :</b> %s\n📁 <b>File   :</b> <code>%s</code>\n📂 <b>Source :</b> %s\n👤 <b>User   :</b> <b>%s</b>\n🔢 <b>PID    :</b> %s\n🔐 <b>SHA256 :</b> <code>%s...</code>%s' \
+    printf '%s <b>CONFIG CHANGE DETECTED</b>\n\n🕐 <b>Time  :</b> %s\n📋 <b>Event  :</b> %s\n📁 <b>File   :</b> <code>%s</code>\n📂 <b>Source :</b> %s\n👤 <b>User   :</b> <b>%s</b>\n🔢 <b>PID    :</b> %s\n🔐 <b>SHA256 :</b> <code>%s...</code>%s' \
         "$emoji" "$timestamp" "$event" "$filepath" "$source_dir" \
         "$user" "${pid:-N/A}" "$checksum" "$diff_text"
 }
@@ -353,7 +353,7 @@ show_diff() {
 log_event() {
     local event="$1"
     local filepath="$2"
-    local source_dir="$3"     # /etc atau /opt
+    local source_dir="$3"    
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
@@ -427,13 +427,13 @@ monitor_target() {
     2>/dev/null \
     | while IFS='|' read -r events filepath; do
 
-        # Filter 1: ekstensi
+        
         is_allowed_ext "$filepath" || continue
 
-        # Filter 2: path blacklist
+        
         is_skipped_path "$filepath" && continue
 
-        # Map event label
+        
         case "$events" in
             *MODIFY*)     label="MODIFY"   ;;
             *CREATE*)     label="CREATE"   ;;
