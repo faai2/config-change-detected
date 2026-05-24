@@ -2,13 +2,13 @@
 
 ## Features
 
-📁 Monitor multiple directories (/etc, /opt) in parallel
-🔍 Filter only config files (.conf, .cfg, .ini, .env)
-👤 Detect which user made the change
-📸 Auto snapshot/backup on every change
-📊 Show diff of changed lines
-📱 Real-time Telegram notifications (+ Email & Slack optional)
-🚫 Auto blacklist system users & paths (anti false-positive)
+- 📁 Monitor multiple directories (/etc, /opt) in parallel
+- 🔍 Filter only config files (.conf, .cfg, .ini, .env)
+- 👤 Detect which user made the change
+- 📸 Auto snapshot/backup on every change
+- 📊 Show diff of changed lines
+- 📱 Real-time Telegram notifications (+ Email & Slack optional)
+- 🚫 Auto blacklist system users & paths (anti false-positive)
 
 ## Requirements
 
