@@ -1,6 +1,6 @@
 # config-monitor 🔍
 
-##Features
+## Features
 
 📁 Monitor multiple directories (/etc, /opt) in parallel
 🔍 Filter only config files (.conf, .cfg, .ini, .env)
