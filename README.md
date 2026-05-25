@@ -21,7 +21,7 @@ sudo apt install inotify-tools auditd
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/faai2/config-monitor.git
+git clone https://github.com/faai2/config-change-detected.git
 cd config-monitor
 
 # 2. execute permission
